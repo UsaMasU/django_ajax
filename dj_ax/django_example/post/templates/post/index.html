@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Like Post App</title>
+    <script type="text/javascript" src="{% static '/jquery/jquery-3.5.1.js' %}"></script>
+</head>
+<body>
+    <a href="{% url 'index' %}">Refresh page</a>
+    <hr>
+    <h1>Ajax example (GET method)</h1>
+    <h2 id="message">{{ likes }}</h2>
+    {% for post in posts %}
+        <h3>{{ forloop.counter }}) {{ post.post_heading }}</h3>
+        <p>{{ post.post_text }} </p>
+        <a class="likebutton" id="like{{ post.id }}" href="#" data-catid="{{ post.id }}">Like</a>
+    {% endfor %}
+    <script type="text/javascript" src="{% static '/js/ajax.js' %}"></script>
+
+    <p>Basically, what we are doing here is - we are making an ajax get request -> /likepost_get/?post_id=X</p>
+    <hr>
+
+    <h1>Ajax example (POST method)</h1>
+    <form>
+        {% csrf_token %}
+        Select your favorite fruit:
+            <select id="mySelect">
+            <option value="apple" selected >Select fruit</option>
+            <option value="apple">Apple</option>
+            <option value="orange">Orange</option>
+            <option value="pineapple">Pineapple</option>
+            <option value="banana">Banana</option>
+        </select>
+    </form>
+    <p id="serv-response"></p>
+    <p>Basically, what we are doing here is - we are making an ajax post request -> /likepost_post/</p>
+    <hr>
+    <a href="{% url 'index' %}">Refresh page</a>
+    </body>
+</html>
+
