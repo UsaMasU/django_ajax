@@ -1,4 +1,6 @@
 import time
+import random
+
 from django.shortcuts import render
 from .models import Post, Like
 from django.http import HttpResponse
@@ -44,6 +46,42 @@ def likePost_post(request):
             'fruit': response['fruit']
         }
         time.sleep(5)   #  # Hard work simulation
+        return HttpResponse(json.dumps(data))
+    else:
+        return HttpResponse("Request method is not a POST")
+
+
+def button_ajax_get(request):
+    if request.method == 'GET':
+        print('GET')
+        get_data = request.GET['text']
+        back_data = list(get_data)
+        random.shuffle(back_data)
+        back_data = ''.join(back_data).capitalize()
+        print(back_data)
+        data = {
+                'backtext': back_data
+        }
+        #time.sleep(5)   # Hard work simulation
+        return HttpResponse(json.dumps(data))
+    else:
+        return HttpResponse("Request method is not a GET")
+
+
+def button_ajax_post(request):
+    if request.method == 'POST':
+        print('POST')
+        response = json.loads(request.body.decode("utf-8"))
+
+        print(response['text'])
+        back_data = list(response['text'])
+        random.shuffle(back_data)
+        back_data = ''.join(back_data).capitalize()
+        print(back_data)
+        data = {
+            'backtext': back_data,
+        }
+        #time.sleep(5)   #  # Hard work simulation
         return HttpResponse(json.dumps(data))
     else:
         return HttpResponse("Request method is not a POST")

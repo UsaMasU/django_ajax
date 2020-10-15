@@ -1,36 +1,6 @@
-$('.likebutton').click(function(){
-    let catid = $(this).attr("data-catid");
-    let likes_counter = $("#message").text();
-    console.log('catid:', catid);
-    $("#message").text('await...')
-    $.ajax(
-        {
-            type:"GET",
-            url: "/likepost_get/",
-            data: {
-                post_id: catid,
-                counter: likes_counter
-            },
-            success: function( response ) {
-                $( '#like' + catid ).remove();
-                console.log('Ajax Get Success');
-                $( '#message' ).text(JSON.parse(response)['count']);
-            },
-            error: function( response ) {
-                        console.log('Ajax Get Failure');
-                        console.log(response);
-                        $( '#message' ).text('Ajax Get Failure');
-                    }
-        });
-});
-
 $(document).ready(function(){
-    $("#mySelect").change(function(){
-        selected = $("#mySelect option:selected").text()
-        let likes_counter = $("#message").text();
-         $( '#serv-response' ).text('awaiting...');
 
-        $.ajaxSetup({
+    $.ajaxSetup({
             beforeSend: function(xhr, settings) {
                 function getCookie(name) {
                     var cookieValue = null;
@@ -54,6 +24,11 @@ $(document).ready(function(){
             }
         });
 
+    $("#mySelect").change(function(){
+        selected = $("#mySelect option:selected").text()
+        let likes_counter = $("#message").text();
+         $( '#serv-response' ).text('awaiting...');
+
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -67,13 +42,42 @@ $(document).ready(function(){
                         console.log('Ajax Post Success');
                         console.log(response)
                         $( '#serv-response' ).text(response['fruit'] + ' ' + response['count']);
-                    },
+            },
             error: function(response) {
                         console.log('Ajax Post Failure');
                         console.log(response);
                         $( '#serv-response' ).text('Failure');
-                    }
+            },
+            complete: function( response ){
+                    console.log('complete');
+            }
         });
   });
-});
 
+    $('#postbtn').click(function(){
+        //let button_text = $(this).text();
+        let button_text = $(this).val();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            url: '/button_ajax_post/',
+            processData: false,
+            data: JSON.stringify({
+                    text: button_text
+            }),
+            success: function( response ) {
+                    console.log('success');
+                    console.log(response['backtext'])
+                    $('#postbtn').val(response['backtext']);
+                },
+            error: function( response ) {
+                    console.log('error');
+            },
+            complete: function( response ){
+                    console.log('complete');
+            }
+        });
+    });
+
+});

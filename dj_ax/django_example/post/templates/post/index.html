@@ -4,9 +4,22 @@
 <head>
     <title>Like Post App</title>
     <script type="text/javascript" src="{% static '/jquery/jquery-3.5.1.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/ajax_get.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/ajax_post.js' %}"></script>
+    <link href="{% static 'css/style.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <script>
+        $(document).ajaxStart(function () {
+            $(document.body).css({ 'cursor': 'wait' })
+        });
+        $(document).ajaxComplete(function () {
+            $(document.body).css({ 'cursor': 'default' })
+        });
+    </script>
 </head>
 <body>
     <a href="{% url 'index' %}">Refresh page</a>
+    <hr>
+    <div><a id="getbtn" class="button21" style="cursor: pointer;" >Ajax</a></div>
     <hr>
     <h1>Ajax example (GET method)</h1>
     <h2 id="message">{{ likes }}</h2>
@@ -15,7 +28,7 @@
         <p>{{ post.post_text }} </p>
         <a class="likebutton" id="like{{ post.id }}" href="#" data-catid="{{ post.id }}">Like</a>
     {% endfor %}
-    <script type="text/javascript" src="{% static '/js/ajax.js' %}"></script>
+
 
     <p>Basically, what we are doing here is - we are making an ajax get request -> /likepost_get/?post_id=X</p>
     <hr>
@@ -34,6 +47,12 @@
     </form>
     <p id="serv-response"></p>
     <p>Basically, what we are doing here is - we are making an ajax post request -> /likepost_post/</p>
+    <hr>
+    <form>
+        {% csrf_token %}
+        <!--a id="postbtn" class="button13" style="cursor: pointer;">Django</a-->
+        <input type="button" id="postbtn" class="button4" style="cursor: pointer;" value="Django">
+    </form>
     <hr>
     <a href="{% url 'index' %}">Refresh page</a>
     </body>
