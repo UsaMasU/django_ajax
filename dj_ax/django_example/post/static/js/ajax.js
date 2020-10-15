@@ -1,7 +1,8 @@
 $('.likebutton').click(function(){
     let catid = $(this).attr("data-catid");
     let likes_counter = $("#message").text();
-    console.log('catid:', catid)
+    console.log('catid:', catid);
+    $("#message").text('await...')
     $.ajax(
         {
             type:"GET",
@@ -27,6 +28,7 @@ $(document).ready(function(){
     $("#mySelect").change(function(){
         selected = $("#mySelect option:selected").text()
         let likes_counter = $("#message").text();
+         $( '#serv-response' ).text('awaiting...');
 
         $.ajaxSetup({
             beforeSend: function(xhr, settings) {

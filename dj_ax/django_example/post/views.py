@@ -27,6 +27,7 @@ def likePost_get(request):
                 'name': 'Ajax GET',
                 'count': likedpost_count
         }
+        time.sleep(5)   # Hard work simulation
         return HttpResponse(json.dumps(data))
     else:
         return HttpResponse("Request method is not a GET")
@@ -42,7 +43,7 @@ def likePost_post(request):
             'count': Like.objects.count(),
             'fruit': response['fruit']
         }
-        #time.sleep(5)
+        time.sleep(5)   #  # Hard work simulation
         return HttpResponse(json.dumps(data))
     else:
         return HttpResponse("Request method is not a POST")
