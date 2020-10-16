@@ -27,8 +27,7 @@ $(document).ready(function(){
     $("#mySelect").change(function(){
         selected = $("#mySelect option:selected").text()
         let likes_counter = $("#message").text();
-         $( '#serv-response' ).text('awaiting...');
-
+        $( '#serv-response' ).text('awaiting...');
         $.ajax({
             type: 'POST',
             dataType: 'json',

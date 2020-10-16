@@ -6,15 +6,8 @@
     <script type="text/javascript" src="{% static '/jquery/jquery-3.5.1.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/ajax_get.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/ajax_post.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/cursor.js' %}"></script>
     <link href="{% static 'css/style.css' %}" media="screen" rel="stylesheet" type="text/css">
-    <script>
-        $(document).ajaxStart(function () {
-            $(document.body).css({ 'cursor': 'wait' })
-        });
-        $(document).ajaxComplete(function () {
-            $(document.body).css({ 'cursor': 'default' })
-        });
-    </script>
 </head>
 <body>
     <a href="{% url 'index' %}">Refresh page</a>
@@ -53,6 +46,10 @@
         <!--a id="postbtn" class="button13" style="cursor: pointer;">Django</a-->
         <input type="button" id="postbtn" class="button4" style="cursor: pointer;" value="Django">
     </form>
+        <hr>
+    <!--a onclick="wait_show(5000)">Show Wait</a-->
+    <input type="number" id = "showtime" value="5000">
+    <input type="button" style="cursor: pointer;" onclick="wait_show()" value="Show Wait">
     <hr>
     <a href="{% url 'index' %}">Refresh page</a>
     </body>

@@ -33,10 +33,6 @@ $(document).ready(function(){
                 data: {
                     text: button_text
                 },
-                beforeSend: function( response ) {
-                    console.log('before send');
-                    console.log('button_text:', button_text);
-                },
                 success: function( response ) {
                     console.log('success');
                     console.log(JSON.parse(response)['backtext'])
@@ -52,3 +48,4 @@ $(document).ready(function(){
     });
 
 });
+

@@ -1,3 +1,7 @@
+.cursor-wait {
+	cursor: wait !important;
+}
+
 a.button21 {
   display: inline-block;
   width: 5em;
@@ -69,3 +73,4 @@ input.button4:active {
 @keyframes pulsate {
   50% {color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff;}
 }
+
