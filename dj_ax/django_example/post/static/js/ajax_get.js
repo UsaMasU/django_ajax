@@ -15,6 +15,7 @@ $(document).ready(function(){
                 success: function( response ) {
                     $( '#like' + catid ).remove();
                     console.log('Ajax Get Success');
+                    console.log(arguments, response);
                     $( '#message' ).text(JSON.parse(response)['count']);
                 },
                 error: function( response ) {
