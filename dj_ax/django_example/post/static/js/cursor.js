@@ -35,4 +35,23 @@ $(document).ready(function(){
         remove_cursor_wait();
     });
 
+
+// Promise exmple for show cursor by pressing pause button
+    delay = (ms = 1000) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve("done"), ms);
+        });
+    };
+
+    pause = function (){
+        ms = $('#showtime').val()
+        console.log('pause start:', ms);
+        cursor_wait();
+        delay(ms)
+            .then((data)=>{
+                console.log('resolve:', data);
+                remove_cursor_wait();
+            });
+        };
+
 });
