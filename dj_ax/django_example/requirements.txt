@@ -2,3 +2,8 @@ asgiref==3.2.10
 Django==3.1.2
 pytz==2020.1
 sqlparse==0.4.1
+httpx==0.16.1
+python-snap7==0.11
+redis==3.5.3
+uvicorn==0.12.2
+
